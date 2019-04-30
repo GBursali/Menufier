@@ -1,3 +1,5 @@
+# Simplifies CLI menus.
+
 # Represents a menu for CLI
 class Menu
   def initialize
@@ -8,14 +10,21 @@ class Menu
     @items << MenuItem.new(index, name, proc)
   end
 
-  def print
+  def print_choices
     @items.each do |item|
       puts item.as_string
     end
   end
 
-  def navigated?(inp)
-    @items.select { |item| item.index == inp }.call
+  def navigated?(text)
+    print_choices
+    print(text)
+    search = gets.to_i
+    item = @items.detect { |mapitem| mapitem.index == search }
+    return false if item.nil?
+
+    item.call
+    true
   end
 end
 

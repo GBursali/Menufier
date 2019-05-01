@@ -1,4 +1,4 @@
-require_relative 'gb_menu.rb'
+require_relative 'menufier.rb'
 
 def dog
   puts 'Bark bark'
@@ -8,10 +8,10 @@ def wolf
   puts 'wulf wulf'
 end
 
-main = Menu.new
+menu = Menu.new
 
-main.add(1, 'Dog', method(:dog))
-main.add(2, 'Wolf', method(:wolf))
+menu.add(1, 'Dog', method(:dog))
+menu.add(2, 'Wolf', method(:wolf))
 loop do
-  break unless main.navigated?("Select an animal:")
+  break unless menu.navigated?("Select an animal:")
 end
